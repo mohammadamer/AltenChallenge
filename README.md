@@ -49,6 +49,31 @@ Every Web API Project has Db initializer to add dummy data to database when the 
 ## Unit Testing
 Unit testing is applied to Customers and Vehicles Microservices using nUnit and Moq testing frameworks.
 
+## Deployment
+Every Microservice has a deployment project that can be used to deploy it to production (Azure Subscription) 
 
+1. Cusromers
+DatabaseInstance folder in Alten.Customers.Deploy contains the Powershell that can be used to deploy db instance but add your subscription id to the power shell.
 
+BackendDbSchema contains the database scripts of Customer database.
 
+BackendWeb folder in Alten.Customers.Deploy contains the Powershell that can be used to deploy Customers Web API but you need to add Subscription id and db connection string.
+
+2. Vehicles
+DatabaseInstance folder in Alten.Vehicles.Deploy contains the Powershell that can be used to deploy db instance but add your subscription id to the power shell.
+
+BackendDbSchema contains the database scripts of Vehicle database.
+
+BackendWeb folder in Alten.Vehicles.Deploy contains the Powershell that can be used to deploy Vehicles Web API but you need to add Subscription id and db connection string.
+
+3. Simulation Web API
+Alten.Simulation.Deploy contains the Powershell that can be used to deploy Simulation Web API but you need to add Subscription id.
+
+4. Simulation Web Job
+Can be deployed using visual studio under Simulation Web API so it can be run in the context of the Simulation Web API.
+
+5. Portal
+Publish the Alten.Portal then using Alten.Portal.Deploy project that contains the power shell deploy portal to Azure.
+
+## Enhancement
+Enhancements will be done to the solution
