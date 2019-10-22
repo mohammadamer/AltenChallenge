@@ -22,9 +22,15 @@ The simulation web Job is an Azure Web Job that will simulate the real time ping
 The soltion is developed using Visual Studio 2019 and .NET Core 2.2. Dependency Injection applied to every project solution.
 every microservice has solution folder and every solution folder has a deployment project to deploy the microservice to Microsoft Azure account.
 
+![Solution Structure](https://github.com/mohammadamer/AltenChallenge/blob/master/01.png)
 
 ## Portal:
 As explained web front-end is .NET Core 2.2 and angular js project.
+
+![Portal Home Page](https://github.com/mohammadamer/AltenChallenge/blob/master/03.png)
+
+![Portal Home Page](https://github.com/mohammadamer/AltenChallenge/blob/master/04.png)
+
 
 ## Web APIs:
 Every Web API Project has Db initializer to add dummy data to database when the web API first run
