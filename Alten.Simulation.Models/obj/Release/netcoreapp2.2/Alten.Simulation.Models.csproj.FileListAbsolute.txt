@@ -1,0 +1,8 @@
+C:\Alten\Alten.Simulation.Models\bin\Release\netcoreapp2.2\Alten.Simulation.Models.deps.json
+C:\Alten\Alten.Simulation.Models\bin\Release\netcoreapp2.2\Alten.Simulation.Models.dll
+C:\Alten\Alten.Simulation.Models\bin\Release\netcoreapp2.2\Alten.Simulation.Models.pdb
+C:\Alten\Alten.Simulation.Models\obj\Release\netcoreapp2.2\Alten.Simulation.Models.csprojAssemblyReference.cache
+C:\Alten\Alten.Simulation.Models\obj\Release\netcoreapp2.2\Alten.Simulation.Models.AssemblyInfoInputs.cache
+C:\Alten\Alten.Simulation.Models\obj\Release\netcoreapp2.2\Alten.Simulation.Models.AssemblyInfo.cs
+C:\Alten\Alten.Simulation.Models\obj\Release\netcoreapp2.2\Alten.Simulation.Models.dll
+C:\Alten\Alten.Simulation.Models\obj\Release\netcoreapp2.2\Alten.Simulation.Models.pdb

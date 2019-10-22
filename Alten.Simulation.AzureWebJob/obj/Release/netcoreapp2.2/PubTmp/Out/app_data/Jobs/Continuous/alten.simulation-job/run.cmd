@@ -1,0 +1,1 @@
+dotnet Alten.Simulation.AzureWebJob.dll %*

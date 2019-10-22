@@ -1,0 +1,11 @@
+C:\Alten\Alten.Simulation.APIClient\bin\Release\netcoreapp2.2\Alten.Simulation.APIClient.deps.json
+C:\Alten\Alten.Simulation.APIClient\bin\Release\netcoreapp2.2\Alten.Simulation.APIClient.dll
+C:\Alten\Alten.Simulation.APIClient\bin\Release\netcoreapp2.2\Alten.Simulation.APIClient.pdb
+C:\Alten\Alten.Simulation.APIClient\bin\Release\netcoreapp2.2\Alten.Simulation.Models.dll
+C:\Alten\Alten.Simulation.APIClient\bin\Release\netcoreapp2.2\Alten.Simulation.Models.pdb
+C:\Alten\Alten.Simulation.APIClient\obj\Release\netcoreapp2.2\Alten.Simulation.APIClient.csprojAssemblyReference.cache
+C:\Alten\Alten.Simulation.APIClient\obj\Release\netcoreapp2.2\Alten.Simulation.APIClient.AssemblyInfoInputs.cache
+C:\Alten\Alten.Simulation.APIClient\obj\Release\netcoreapp2.2\Alten.Simulation.APIClient.AssemblyInfo.cs
+C:\Alten\Alten.Simulation.APIClient\obj\Release\netcoreapp2.2\Alten.Simulation.APIClient.csproj.CopyComplete
+C:\Alten\Alten.Simulation.APIClient\obj\Release\netcoreapp2.2\Alten.Simulation.APIClient.dll
+C:\Alten\Alten.Simulation.APIClient\obj\Release\netcoreapp2.2\Alten.Simulation.APIClient.pdb

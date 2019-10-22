@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name_appinsights": {
+      "value": "alten-simulation-ai"
+    },
+    "name_serviceplan": {
+      "value": "altenplan"
+    },
+    "name_webapp": {
+      "value": "alten-simulation"
+    },
+    "name_config_webapp": {
+      "value": "alten-simulation/web"
+    },
+    "name_resourcegroup": {
+      "value": "alten-group"
+    },
+    "name_storagedeploy": {
+      "value": "altensimulationstorage"
+    },
+
+    "config_location": {
+      "value": "West Europe"
+    },
+    "config_cors": {
+      "value": "*"
+    },
+
+    "_packageFolder": {
+      "value": "package"
+    },
+    "_packageFileName": {
+      "value": "package.zip"
+    }
+
+  }
+}

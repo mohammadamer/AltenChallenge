@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>c7bfdc30-69fc-45e0-8e91-bbfd22394162</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PrepareForBuildDependsOn>
+    </PrepareForBuildDependsOn>
+  </PropertyGroup>
+  <Import Condition=" Exists('Deployment.targets') " Project="Deployment.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- vertag<:>start tokens<:>maj.min -->
+  <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
+  <!-- vertag<:>end -->
+  <ItemGroup>
+    <None Include="BackendSimulationWebJob\BackendSimulationWebJob.parameters.json" />
+    <None Include="BackendSimulationWebJob\BackendSimulationWebJob.template.json" />
+    <None Include="BackendSimulationWebJob\deploy.ps1" />
+    <None Include="BackendSimulationWebJob\deploytemplate.ps1" />
+    <None Include="BackendSimulationWebJob\staging\package\Alten.Vehicles.deploy-readme.txt" />
+    <None Include="BackendSimulationWebJob\staging\package\Alten.Vehicles.deploy.cmd" />
+    <None Include="BackendSimulationWebJob\staging\package\Alten.Vehicles.Parameters.xml" />
+    <None Include="BackendSimulationWebJob\staging\package\Alten.Vehicles.SetParameters.xml" />
+    <None Include="BackendSimulationWebJob\staging\package\Alten.Vehicles.SourceManifest.xml" />
+    <None Include="BackendSimulationWebJob\staging\package\package.zip" />
+    <None Include="Deployment.targets">
+      <Visible>False</Visible>
+    </None>
+  </ItemGroup>
+  <Target Name="GetReferenceAssemblyPaths" />
+</Project>
