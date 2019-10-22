@@ -53,18 +53,18 @@ Unit testing is applied to Customers and Vehicles Microservices using nUnit and 
 Every Microservice has a deployment project that can be used to deploy it to production (Azure Subscription) 
 
 1. Cusromers
-DatabaseInstance folder in Alten.Customers.Deploy contains the Powershell that can be used to deploy db instance but add your subscription id to the power shell.
+1.1 DatabaseInstance folder in Alten.Customers.Deploy contains the Powershell that can be used to deploy db instance but add your subscription id to the power shell.
 
-BackendDbSchema contains the database scripts of Customer database.
+1.2 BackendDbSchema contains the database scripts of Customer database.
 
-BackendWeb folder in Alten.Customers.Deploy contains the Powershell that can be used to deploy Customers Web API but you need to add Subscription id and db connection string.
+1.3 BackendWeb folder in Alten.Customers.Deploy contains the Powershell that can be used to deploy Customers Web API but you need to add Subscription id and db connection string.
 
 2. Vehicles
-DatabaseInstance folder in Alten.Vehicles.Deploy contains the Powershell that can be used to deploy db instance but add your subscription id to the power shell.
+2.1 DatabaseInstance folder in Alten.Vehicles.Deploy contains the Powershell that can be used to deploy db instance but add your subscription id to the power shell.
 
-BackendDbSchema contains the database scripts of Vehicle database.
+2.2 BackendDbSchema contains the database scripts of Vehicle database.
 
-BackendWeb folder in Alten.Vehicles.Deploy contains the Powershell that can be used to deploy Vehicles Web API but you need to add Subscription id and db connection string.
+2.3 BackendWeb folder in Alten.Vehicles.Deploy contains the Powershell that can be used to deploy Vehicles Web API but you need to add Subscription id and db connection string.
 
 3. Simulation Web API
 Alten.Simulation.Deploy contains the Powershell that can be used to deploy Simulation Web API but you need to add Subscription id.
