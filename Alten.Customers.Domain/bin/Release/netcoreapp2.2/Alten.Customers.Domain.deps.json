@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.2",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.2": {
+      "Alten.Customers.Domain/1.0.0": {
+        "runtime": {
+          "Alten.Customers.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Alten.Customers.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

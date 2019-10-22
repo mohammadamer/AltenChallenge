@@ -1,0 +1,8 @@
+C:\Alten\Alten.Customers.Domain\bin\Release\netcoreapp2.2\Alten.Customers.Domain.deps.json
+C:\Alten\Alten.Customers.Domain\bin\Release\netcoreapp2.2\Alten.Customers.Domain.dll
+C:\Alten\Alten.Customers.Domain\bin\Release\netcoreapp2.2\Alten.Customers.Domain.pdb
+C:\Alten\Alten.Customers.Domain\obj\Release\netcoreapp2.2\Alten.Customers.Domain.csprojAssemblyReference.cache
+C:\Alten\Alten.Customers.Domain\obj\Release\netcoreapp2.2\Alten.Customers.Domain.AssemblyInfoInputs.cache
+C:\Alten\Alten.Customers.Domain\obj\Release\netcoreapp2.2\Alten.Customers.Domain.AssemblyInfo.cs
+C:\Alten\Alten.Customers.Domain\obj\Release\netcoreapp2.2\Alten.Customers.Domain.dll
+C:\Alten\Alten.Customers.Domain\obj\Release\netcoreapp2.2\Alten.Customers.Domain.pdb

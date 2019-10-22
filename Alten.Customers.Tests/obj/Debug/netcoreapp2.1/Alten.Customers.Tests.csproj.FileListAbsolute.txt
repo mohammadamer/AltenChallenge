@@ -1,0 +1,9 @@
+C:\Projects\Alten\Alten.Customers.Tests\bin\Debug\netcoreapp2.1\Alten.Customers.Tests.deps.json
+C:\Projects\Alten\Alten.Customers.Tests\bin\Debug\netcoreapp2.1\Alten.Customers.Tests.dll
+C:\Projects\Alten\Alten.Customers.Tests\bin\Debug\netcoreapp2.1\Alten.Customers.Tests.pdb
+C:\Projects\Alten\Alten.Customers.Tests\obj\Debug\netcoreapp2.1\Alten.Customers.Tests.csproj.CoreCompileInputs.cache
+C:\Projects\Alten\Alten.Customers.Tests\obj\Debug\netcoreapp2.1\Alten.Customers.Tests.AssemblyInfoInputs.cache
+C:\Projects\Alten\Alten.Customers.Tests\obj\Debug\netcoreapp2.1\Alten.Customers.Tests.AssemblyInfo.cs
+C:\Projects\Alten\Alten.Customers.Tests\obj\Debug\netcoreapp2.1\Alten.Customers.Tests.dll
+C:\Projects\Alten\Alten.Customers.Tests\obj\Debug\netcoreapp2.1\Alten.Customers.Tests.pdb
+C:\Projects\Alten\Alten.Customers.Tests\obj\Debug\netcoreapp2.1\Alten.Customers.Tests.csprojAssemblyReference.cache
