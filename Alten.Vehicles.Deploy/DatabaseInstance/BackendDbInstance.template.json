@@ -1,0 +1,116 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "BackendDbInstanceAdminLogin": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BackendDbInstanceAdminLoginPassword": {
+      "type": "securestring"
+    },
+    "BackendDbInstancedbInstanceName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BackendDbInstancedbName": {
+      "type": "string",
+      "minLength": 1
+    },
+ 
+    "BackendDbInstancedbCollation": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "BackendDbInstancedbEdition": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
+    },
+    "BackendDbInstancedbRequestedServiceObjectiveName": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "S0",
+        "S1",
+        "S2",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "metadata": {
+        "description": "Describes the performance level for Edition"
+      }
+    }
+  },
+
+  "variables": {
+    "BackendDbInstanceAdminLoginPassword": "[concat('P', uniqueString(resourceGroup().id, '224F5A8B-51DB-46A3-A7C8-59B0DD584A41'), 'x', '!')]",
+    "BackendDbInstancedbmaxSizeBytes": "2147483648"
+
+  },
+
+  "resources": [
+    {
+      "name": "[parameters('BackendDbInstancedbInstanceName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2014-04-01-preview",
+      "dependsOn": [],
+      "tags": {
+        "displayName": "[parameters('BackendDbInstancedbInstanceName')]"
+      },
+      "properties": {
+        "administratorLogin": "[parameters('BackendDbInstanceAdminLogin')]",
+        "administratorLoginPassword": "[variables('BackendDbInstanceAdminLoginPassword')]"
+      },
+      "resources": [
+        {
+          "name": "AllowAllWindowsAzureIps",
+          "type": "firewallrules",
+          "location": "[resourceGroup().location]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', parameters('BackendDbInstancedbInstanceName'))]"
+          ],
+          "properties": {
+            "startIpAddress": "0.0.0.0",
+            "endIpAddress": "0.0.0.0"
+          }
+        },
+        {
+          "name": "[parameters('BackendDbInstancedbName')]",
+          "type": "databases",
+          "location": "[resourceGroup().location]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', parameters('BackendDbInstancedbInstanceName'))]"
+          ],
+          "tags": {
+            "displayName": "[parameters('BackendDbInstancedbName')]"
+          },
+          "properties": {
+            "collation": "[parameters('BackendDbInstancedbCollation')]",
+            "edition": "[parameters('BackendDbInstancedbEdition')]",
+            "maxSizeBytes": "[variables('BackendDbInstancedbmaxSizeBytes')]",
+            "requestedServiceObjectiveName": "[parameters('BackendDbInstancedbRequestedServiceObjectiveName')]"
+          }
+        }
+      ]
+    }
+  ],
+
+  "outputs": {
+    "sqlserverAdminPassword": {
+      "type": "string",
+      "value": "[variables('BackendDbInstanceAdminLoginPassword')]"
+    }
+
+  }
+}

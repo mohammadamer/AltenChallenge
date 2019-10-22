@@ -1,0 +1,8 @@
+C:\Alten\Alten.Vehicles.Domain\bin\Release\netcoreapp2.2\Alten.Vehicles.Domain.deps.json
+C:\Alten\Alten.Vehicles.Domain\bin\Release\netcoreapp2.2\Alten.Vehicles.Domain.dll
+C:\Alten\Alten.Vehicles.Domain\bin\Release\netcoreapp2.2\Alten.Vehicles.Domain.pdb
+C:\Alten\Alten.Vehicles.Domain\obj\Release\netcoreapp2.2\Alten.Vehicles.Domain.csprojAssemblyReference.cache
+C:\Alten\Alten.Vehicles.Domain\obj\Release\netcoreapp2.2\Alten.Vehicles.Domain.AssemblyInfoInputs.cache
+C:\Alten\Alten.Vehicles.Domain\obj\Release\netcoreapp2.2\Alten.Vehicles.Domain.AssemblyInfo.cs
+C:\Alten\Alten.Vehicles.Domain\obj\Release\netcoreapp2.2\Alten.Vehicles.Domain.dll
+C:\Alten\Alten.Vehicles.Domain\obj\Release\netcoreapp2.2\Alten.Vehicles.Domain.pdb
