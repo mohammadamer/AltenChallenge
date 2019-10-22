@@ -1,0 +1,364 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name_appinsights": {
+      "defaultValue": "alten-web-ai",
+      "type": "string"
+    },
+    "name_serviceplan": {
+      "defaultValue": "altenplan",
+      "type": "string"
+    },
+    "name_webapp": {
+      "defaultValue": "alten-web",
+      "type": "string"
+    },
+    "name_config_webapp": {
+      "defaultValue": "alten-web/web",
+      "type": "string"
+    },
+    "name_resourcegroup": {
+      "defaultValue": "",
+      "type": "string"
+    },
+    "name_storagedeploy": {
+      "defaultValue": "altenstorage",
+      "type": "string"
+    },
+
+    "config_location": {
+      "defaultValue": "West Europe",
+      "type": "string"
+    },
+
+    "config_cors": {
+      "defaultValue": "*",
+      "type": "string"
+    },
+    "_packageFolder": {
+      "type": "string",
+      "metadata": {
+        "description": "WebDeploy package location. This path is relative to the _artifactsLocation parameter"
+      }
+    },
+    "_packageFileName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the webdeploy package"
+      }
+    },
+    "_artifactsLocation": {
+      "type": "string"
+    },
+    "_artifactsLocationSasToken": {
+      "type": "securestring"
+    },
+    "wespoappsmbstatstorageType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_ZRS",
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Premium_LRS"
+      ]
+    },
+    "WebApp_ConnectionString": {
+      "defaultValue": "ConnectionString",
+      "type": "string"
+    }
+
+
+  },
+  "variables": {
+   
+   
+  },
+  "resources": [
+
+    {
+      "comments": "App Insights",
+      "type": "Microsoft.Insights/components",
+      "kind": "Web",
+      "name": "[parameters('name_appinsights')]",
+      "apiVersion": "2014-04-01",
+      "location": "West Europe",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('name_webapp'))]"
+      ],
+      "tags": {
+        "displayName": "[parameters('name_appinsights')]"
+      },
+      "properties": {
+        "ApplicationId": "[parameters('name_appinsights')]"
+      }
+
+    },
+    {
+      "comments": "Service Plan",
+      "type": "Microsoft.Web/serverfarms",
+      "sku": {
+        "name": "S1",
+        "tier": "Standard",
+        "size": "S1",
+        "family": "S",
+        "capacity": 1
+      },
+      "kind": "app",
+      "name": "[parameters('name_serviceplan')]",
+      "apiVersion": "2015-08-01",
+      "location": "West Europe",
+      "properties": {
+        "name": "[parameters('name_serviceplan')]",
+        "numberOfWorkers": 1
+      },
+      "dependsOn": []
+
+    },
+    {
+      "comments": "Web App",
+
+      "kind": "app",
+      "name": "[parameters('name_webapp')]",
+      "type": "Microsoft.Web/sites",
+      "location": "West Europe",
+      "apiVersion": "2015-08-01",
+
+      "tags": {
+        "[concat('hidden-link:[resourceGroup().id]/providers/Microsoft.Web/serverfarms/',parameters('name_serviceplan'))]": "empty"
+      },
+      "scale": null,
+      "properties": {
+        "name": "[parameters('name_webapp')]",
+        "hostNames": [
+          "[concat(parameters('name_webapp'),'.azurewebsites.net')]"
+        ],
+        "enabledHostNames": [
+          "[concat(parameters('name_webapp'),'.azurewebsites.net')]",
+          "[concat(parameters('name_webapp'),'.scm.azurewebsites.net')]"
+        ],
+        "hostNameSslStates": [
+          {
+            "name": "[concat(parameters('name_webapp'),'.azurewebsites.net')]",
+            "sslState": 0,
+            "thumbprint": null,
+            "ipBasedSslState": 0
+          },
+          {
+            "name": "[concat(parameters('name_webapp'),'.scm.azurewebsites.net')]",
+            "sslState": 0,
+            "thumbprint": null,
+            "ipBasedSslState": 0
+          }
+        ],
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('name_serviceplan'))]",
+        "siteConfig": {
+          "connectionStrings": [
+            {
+              "name": "AzureWebJobsDashboard",
+              "type": "Custom",
+              "connectionString": "[Concat('DefaultEndpointsProtocol=https;AccountName=',parameters('name_storagedeploy'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('name_storagedeploy')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]"
+            },
+            {
+              "name": "AzureWebJobsStorage",
+              "type": "Custom",
+              "connectionString": "[Concat('DefaultEndpointsProtocol=https;AccountName=',parameters('name_storagedeploy'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('name_storagedeploy')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]"
+            },
+            {
+              "name": "DefaultConnection",
+              "type": "SQLAzure",
+              "connectionString": "[parameters('WebApp_ConnectionString')]"
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('name_serviceplan'))]"
+      ],
+      "resources": [
+        {
+          "name": "MSDeploy",
+          "type": "extensions",
+          "location": "[resourceGroup().location]",
+          "apiVersion": "2015-08-01",
+          "dependsOn": [
+            "[concat('Microsoft.Web/sites/', parameters('name_webapp'))]"
+          ],
+          "tags": {
+            "displayName": "Web Package"
+          },
+          "properties": {
+            "packageUri": "[concat(parameters('_artifactsLocation'), '/', parameters('_packageFolder'), '/', parameters('_packageFileName'), parameters('_artifactsLocationSasToken'))]",
+            "dbType": "None",
+            "setParameters": {
+              "IIS Web Application Name": "[parameters('name_webapp')]"
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "comments": "Web App Site",
+      "type": "Microsoft.Web/sites/config",
+      "name": "[parameters('name_config_webapp')]",
+      "apiVersion": "2016-08-01",
+      "location": "West Europe",
+      "tags": {
+        "[concat('hidden-link:[resourceGroup().id]/providers/Microsoft.Web/serverfarms/',parameters('name_serviceplan'))]": "empty"
+      },
+      "scale": null,
+      "properties": {
+        "numberOfWorkers": 1,
+        "defaultDocuments": [
+          "Default.htm",
+          "Default.html",
+          "Default.asp",
+          "index.htm",
+          "index.html",
+          "iisstart.htm",
+          "default.aspx",
+          "index.php",
+          "hostingstart.html"
+        ],
+        "netFrameworkVersion": "v4.6",
+        "phpVersion": "5.6",
+        "pythonVersion": "",
+        "nodeVersion": "",
+        "linuxFxVersion": "",
+        "requestTracingEnabled": true,
+        "remoteDebuggingEnabled": false,
+        "remoteDebuggingVersion": "",
+        "httpLoggingEnabled": true,
+        "logsDirectorySizeLimit": 100,
+        "detailedErrorLoggingEnabled": true,
+        "publishingUsername": "$euw-spo-deployuser",
+        "publishingPassword": null,
+        "appSettings": null,
+        "metadata": null,
+        "connectionStrings":null,
+        "machineKey": null,
+        "handlerMappings": null,
+        "documentRoot": null,
+        "scmType": "None",
+        "use32BitWorkerProcess": false,
+        "webSocketsEnabled": false,
+        "alwaysOn": true,
+        "javaVersion": null,
+        "javaContainer": null,
+        "javaContainerVersion": null,
+        "appCommandLine": "",
+        "managedPipelineMode": "Integrated",
+        "virtualApplications": [
+          {
+            "virtualPath": "/",
+            "physicalPath": "site\\wwwroot",
+            "preloadEnabled": true,
+            "virtualDirectories": null
+          }
+        ],
+        "winAuthAdminState": 0,
+        "winAuthTenantState": 0,
+        "customAppPoolIdentityAdminState": false,
+        "customAppPoolIdentityTenantState": false,
+        "runtimeADUser": null,
+        "runtimeADUserPassword": null,
+        "loadBalancing": 1,
+        "routingRules": [],
+        "experiments": {
+          "rampUpRules": []
+        },
+        "limits": null,
+        "autoHealEnabled": false,
+        "autoHealRules": {
+          "triggers": null,
+          "actions": null
+        },
+        "tracingOptions": null,
+        "vnetName": "",
+        "siteAuthEnabled": false,
+        "siteAuthSettings": {
+          "enabled": null,
+          "unauthenticatedClientAction": null,
+          "tokenStoreEnabled": null,
+          "allowedExternalRedirectUrls": null,
+          "defaultProvider": null,
+          "clientId": null,
+          "clientSecret": null,
+          "issuer": null,
+          "allowedAudiences": null,
+          "additionalLoginParams": null,
+          "isAadAutoProvisioned": false,
+          "googleClientId": null,
+          "googleClientSecret": null,
+          "googleOAuthScopes": null,
+          "facebookAppId": null,
+          "facebookAppSecret": null,
+          "facebookOAuthScopes": null,
+          "twitterConsumerKey": null,
+          "twitterConsumerSecret": null,
+          "microsoftAccountClientId": null,
+          "microsoftAccountClientSecret": null,
+          "microsoftAccountOAuthScopes": null
+        },
+        "cors": {
+          "allowedOrigins": [
+            "[parameters('config_cors')]"
+          ]
+        },
+        "push": null,
+        "apiDefinition": {
+          "url": "[concat(parameters('name_webapp'),'.azurewebsites.net/swagger/docs/v1')]"
+        },
+        "autoSwapSlotName": null,
+        "localMySqlEnabled": false,
+        "ipSecurityRestrictions": null
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('name_webapp'))]",
+        "[concat('Microsoft.Web/sites/', parameters('name_webapp'), '/Extensions/MSDeploy')]"
+      ]
+    },
+
+    {
+      "name": "[parameters('name_storagedeploy')]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "kind": "Storage",
+
+      "apiVersion": "2018-07-01",
+      "location": "West Europe",
+      "tags": {},
+      "scale": null,
+      "properties": {
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": false,
+        "encryption": {
+          "services": {
+            "file": {
+              "enabled": true
+            },
+            "blob": {
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        }
+      },
+      "dependsOn": []
+    }
+
+
+
+  ]
+}

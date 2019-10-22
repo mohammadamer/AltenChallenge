@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>7d139c44-fb6a-4fc2-8e44-2981f1a1ee74</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PrepareForBuildDependsOn>
+    </PrepareForBuildDependsOn>
+  </PropertyGroup>
+  <Import Condition=" Exists('Deployment.targets') " Project="Deployment.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- vertag<:>start tokens<:>maj.min -->
+  <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
+  <!-- vertag<:>end -->
+  <ItemGroup>
+    <None Include="Deployment.targets">
+      <Visible>False</Visible>
+    </None>
+    <None Include="FrontendWeb\backendweb.parameters.json" />
+    <None Include="FrontendWeb\backendweb.template.json" />
+    <None Include="FrontendWeb\deploy.ps1" />
+    <None Include="FrontendWeb\deploytemplate.ps1" />
+    <None Include="FrontendWeb\staging\package\Alten.Portal.deploy-readme.txt" />
+    <None Include="FrontendWeb\staging\package\Alten.Portal.deploy.cmd" />
+    <None Include="FrontendWeb\staging\package\Alten.Portal.Parameters.xml" />
+    <None Include="FrontendWeb\staging\package\Alten.Portal.SetParameters.xml" />
+    <None Include="FrontendWeb\staging\package\Alten.Portal.SourceManifest.xml" />
+    <None Include="FrontendWeb\staging\package\package.zip" />
+  </ItemGroup>
+  <Target Name="GetReferenceAssemblyPaths" />
+</Project>

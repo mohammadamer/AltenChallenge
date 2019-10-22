@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name_appinsights": {
+      "value": "alten-web-ai"
+    },
+    "name_serviceplan": {
+      "value": "altenplan"
+    },
+    "name_webapp": {
+      "value": "alten-web"
+    },
+    "name_config_webapp": {
+      "value": "alten-web/web"
+    },
+    "name_resourcegroup": {
+      "value": "alten-group"
+    },
+    "name_storagedeploy": {
+      "value": "altenstorage"
+    },
+
+    "config_location": {
+      "value": "West Europe"
+    },
+    "config_cors": {
+      "value": "*"
+    },
+
+    "_packageFolder": {
+      "value": "package"
+    },
+    "_packageFileName": {
+      "value": "package.zip"
+    },
+    "WebApp_ConnectionString": {
+      "value": "Your Production Connection String"
+    }
+
+
+  }
+}
