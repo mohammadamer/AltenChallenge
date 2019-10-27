@@ -13,7 +13,10 @@ namespace Alten.Vehicles.Mappers
         public MappingEntity()
         {
             CreateMap<VehicleViewModel, Vehicle>();
-            CreateMap<Vehicle, VehicleViewModel>();
+
+            CreateMap<Vehicle, VehicleViewModel>()
+                .ForMember(dest => dest.Isconnected, opt => opt.MapFrom(src => src.LastPingTime.HasValue && src.LastPingTime >= DateTime.Now.AddMinutes(-1)));
+
         }
     }
 }

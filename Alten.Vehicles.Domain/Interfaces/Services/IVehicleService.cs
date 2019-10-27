@@ -11,8 +11,8 @@ namespace Alten.Vehicles.Domain.Interfaces.Services
         void Add(Vehicle Vehicle);
         Vehicle GetById(int id);
         Vehicle GetByVidAndRegNo(string vehicleId, string registrationNo);
-        IEnumerable<VehicleViewModel> GetByCustomerAndStatus(int? customerId, bool? isConnected);
-        IEnumerable<VehicleViewModel> GetAll();
+        IEnumerable<Vehicle> GetByCustomerAndStatus(int? customerId, bool? isConnected);
+        IEnumerable<Vehicle> GetAll();
         void Update(Vehicle vehicle);
     }
 }

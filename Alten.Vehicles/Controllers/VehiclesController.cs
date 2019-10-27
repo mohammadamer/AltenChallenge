@@ -30,7 +30,7 @@ namespace Alten.Vehicles.Controllers
         [Route("GetVehicles")]
         public IActionResult GetVehicles(FilterVehicles filterVehicles)
         {
-            IEnumerable<VehicleViewModel> vehicles;
+            IEnumerable<Vehicle> vehicles;
             if (filterVehicles == null || (filterVehicles.CustomerID == 0 && filterVehicles.IsConnected == 0))
             {
                 vehicles = _service.GetAll();
