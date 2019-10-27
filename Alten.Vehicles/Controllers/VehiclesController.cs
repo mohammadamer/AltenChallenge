@@ -30,7 +30,7 @@ namespace Alten.Vehicles.Controllers
         [Route("GetVehicles")]
         public IActionResult GetVehicles(FilterVehicles filterVehicles)
         {
-            IEnumerable<Vehicle> vehicles;
+            IEnumerable<VehicleViewModel> vehicles;
             if (filterVehicles == null || (filterVehicles.CustomerID == 0 && filterVehicles.IsConnected == 0))
             {
                 vehicles = _service.GetAll();
@@ -42,18 +42,7 @@ namespace Alten.Vehicles.Controllers
                 vehicles = _service.GetByCustomerAndStatus(cutomerId, isConnected);
             }
 
-            IEnumerable<VehicleViewModel> vehicleViewModelList = vehicles.Select(x => new VehicleViewModel
-            {
-                CustomerID = x.CustomerID,
-                CustomerName = x.CustomerName,
-                ID = x.ID,
-                VehicleId = x.VehicleId,
-                LastPingTime = x.LastPingTime,
-                RegistrationNo = x.RegistrationNo,
-                Isconnected = (x.LastPingTime.HasValue && x.LastPingTime >= DateTime.Now.AddMinutes(-1))
-            });
-            return Ok(vehicleViewModelList);
-            //return Ok(_mapper.Map<List<VehicleViewModel>>(vehicles));
+            return Ok(_mapper.Map<List<VehicleViewModel>>(vehicles));
         }
 
 

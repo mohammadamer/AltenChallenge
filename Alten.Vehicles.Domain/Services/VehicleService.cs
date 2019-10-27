@@ -1,7 +1,9 @@
-﻿using Alten.Vehicles.Domain.Entities;
+﻿using Alten.Vehicles.Domain.DataModels;
+using Alten.Vehicles.Domain.Entities;
 using Alten.Vehicles.Domain.Interfaces.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Alten.Vehicles.Domain.Interfaces.Services
@@ -31,14 +33,36 @@ namespace Alten.Vehicles.Domain.Interfaces.Services
             return _repository.GetByVidAndRegNo(vehicleId, registrationNo);
         }
 
-        public IEnumerable<Vehicle> GetByCustomerAndStatus(int? customerId, bool? isConnected)
+        public IEnumerable<VehicleViewModel> GetByCustomerAndStatus(int? customerId, bool? isConnected)
         {
-            return _repository.GetByCustomerAndStatus(customerId, isConnected);
+            var _vehicles = _repository.GetByCustomerAndStatus(customerId, isConnected);
+            var _vehiclesResult = _vehicles.Select(x => new VehicleViewModel
+            {
+                ID = x.ID,
+                CustomerID = x.CustomerID,
+                CustomerName = x.CustomerName,
+                VehicleId = x.VehicleId,
+                LastPingTime = x.LastPingTime,
+                RegistrationNo = x.RegistrationNo,
+                Isconnected = (x.LastPingTime.HasValue && x.LastPingTime >= DateTime.Now.AddMinutes(-1))
+            });
+            return _vehiclesResult;
         }
 
-        public IEnumerable<Vehicle> GetAll()
+        public IEnumerable<VehicleViewModel> GetAll()
         {
-            return _repository.GetAll();
+            var _vehicles = _repository.GetAll();
+            var _vehiclesResult = _vehicles.Select(x => new VehicleViewModel
+            {
+                ID = x.ID,
+                CustomerID = x.CustomerID,
+                CustomerName = x.CustomerName,
+                VehicleId = x.VehicleId,
+                LastPingTime = x.LastPingTime,
+                RegistrationNo = x.RegistrationNo,
+                Isconnected = (x.LastPingTime.HasValue && x.LastPingTime >= DateTime.Now.AddMinutes(-1))
+            });
+            return _vehiclesResult;
         }
 
         public void Update(Vehicle vehicle)
